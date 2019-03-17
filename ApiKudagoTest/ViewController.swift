@@ -168,9 +168,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? KGCell
         
         let events2 = self.events[indexPath.row]
-        
-        
-        
         cell?.labelTitle.text = events2.title
         cell?.labelDescriotions.text = events2.description
 //        cell?.labelDate.text = events2.dates
