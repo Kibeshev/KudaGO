@@ -21,6 +21,7 @@ class KGCell: UITableViewCell {
 
     
     @IBOutlet weak var viewInCell: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,7 +33,7 @@ class KGCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         
-        viewInCell.layer.cornerRadius = 25
+        viewInCell.layer.cornerRadius = 16
         viewInCell.layer.masksToBounds = true
         
       

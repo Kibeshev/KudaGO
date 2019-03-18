@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B56B99F4223FECA600954A35 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B99F3223FECA600954A35 /* CityList.swift */; };
+		B56B99F6223FEE9500954A35 /* CityListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B99F5223FEE9500954A35 /* CityListCell.swift */; };
 		B57DF561222AFCC3000EA406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DF560222AFCC3000EA406 /* AppDelegate.swift */; };
 		B57DF563222AFCC3000EA406 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DF562222AFCC3000EA406 /* ViewController.swift */; };
 		B57DF566222AFCC3000EA406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57DF564222AFCC3000EA406 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		B508DF8F223D2ACF00E1CD95 /* ApiKudagoTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ApiKudagoTest.entitlements; sourceTree = "<group>"; };
+		B56B99F3223FECA600954A35 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
+		B56B99F5223FEE9500954A35 /* CityListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListCell.swift; sourceTree = "<group>"; };
 		B57DF55D222AFCC3000EA406 /* ApiKudagoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApiKudagoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57DF560222AFCC3000EA406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B57DF562222AFCC3000EA406 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				B57DF569222AFCC6000EA406 /* LaunchScreen.storyboard */,
 				B57DF56C222AFCC6000EA406 /* Info.plist */,
 				B57DF575222D315E000EA406 /* KGCell.swift */,
+				B56B99F3223FECA600954A35 /* CityList.swift */,
+				B56B99F5223FEE9500954A35 /* CityListCell.swift */,
 			);
 			path = ApiKudagoTest;
 			sourceTree = "<group>";
@@ -145,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56B99F6223FEE9500954A35 /* CityListCell.swift in Sources */,
 				B57DF563222AFCC3000EA406 /* ViewController.swift in Sources */,
 				B57DF576222D315E000EA406 /* KGCell.swift in Sources */,
+				B56B99F4223FECA600954A35 /* CityList.swift in Sources */,
 				B57DF561222AFCC3000EA406 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,13 +14,16 @@ class Event {
     let description: String
     let price:String
     let place:String?
-
+    let location:String?
+//    let dates:Date
     
-    init(title: String, description: String, price: String,place:String?) {
+    init(title: String, description: String, price: String,place:String?, location:String?) {
         self.title = title
         self.description = description
         self.price = price
         self.place = place
+        self.location = location
+//        self.dates = dates
 
     }
     
@@ -55,10 +58,13 @@ class KudagoAPIManager {
                         // Пытаемся получить title и description по их ключам и привести их к String
                         if let title = element["title"] as? String,
                             let price = element["price"] as? String,
+                           
                             let description = element["description"] as? String {
+                            let location = element["location"] as? String
+                            
                             let place = element["place"] as? String
                             // Создаем объект ивента
-                            let event = Event(title: title, description: description, price: price, place: place)
+                            let event = Event(title: title, description: description, price: price, place: place, location: location)
                             // Добавляем его в массив events
                             events.append(event)
                            
@@ -128,7 +134,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        
 //        viewInCell.layer.cornerRadius = 100
 //        viewInCell.masksToBounds = true
-//        
+//        let dateString = "2014-01-12"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        let dates = dateFormatter.date(from: dateString)
+//
+        
+//        let dateFormatterGet = DateFormatter()
+        
+//        dateFormatterGet.dateStyle = .short
+//        dateFormatterGet.timeStyle = .short
+        
+    
         
       
         
@@ -173,6 +190,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        cell?.labelDate.text = events2.dates
        cell?.labelPlace.text = events2.place
         
+        
         cell?.labelPrice.text = events2.price
         
         if events2.price != ""{
@@ -182,6 +200,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         
+//        let cellCity = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellCityList
+//        
+//        cellCity?.cellList.text = events2.location
         
     
       
@@ -206,6 +227,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      
         }
     }
+
 
 
 
