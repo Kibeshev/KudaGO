@@ -94,15 +94,44 @@ class CityList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         return cellTwo ?? UITableViewCell()
     }
+    // эта функция помогает закрыть экран городов 
+    @objc func closeButtonAction(){
+        dismiss(animated: true, completion: nil)
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+              //добавляем кнопочку в навигуцию для бара
+       
+        
+        let backButton = UIButton(type: .custom)
+        backButton.frame = CGRect(x: 16, y: 32, width: 70, height: 21)
+        
+        backButton.setImage(UIImage(named: "backButton"), for: .normal)
+        backButton.setTitleColor(backButton.tintColor, for: .normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        
+        //нужно чтоб наша кнопочка возвращала экарн назад
+        backButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+//
+//        func closeButtonAction(){
+//            dismiss(animated: true, completion: nil)
+//        }
+//
+     
+    
+        
+   
+
+        
+        
         // Это надо чтобы мы могли показывать наши данные в таблице
-        tableViewTwo.delegate = self
-        tableViewTwo.dataSource = self
+            tableViewTwo.delegate = self
+            tableViewTwo.dataSource = self
         manager.getLocation(completion: { locations in
             DispatchQueue.main.async {
                 
@@ -113,3 +142,6 @@ class CityList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+
+
+

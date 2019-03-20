@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Nuke
 
 class Event {
     
@@ -15,6 +16,7 @@ class Event {
     let price:String
     let place:String?
     let location:String?
+//    let images:UIImage
 //    let dates:Date
     
     init(title: String, description: String, price: String,place:String?, location:String?) {
@@ -23,6 +25,7 @@ class Event {
         self.price = price
         self.place = place
         self.location = location
+//        self.images = images
 //        self.dates = dates
 
     }
@@ -58,6 +61,7 @@ class KudagoAPIManager {
                         // Пытаемся получить title и description по их ключам и привести их к String
                         if let title = element["title"] as? String,
                             let price = element["price"] as? String,
+//                            let images = element["images"] as? UIImage,
                            
                             let description = element["description"] as? String {
                             let location = element["location"] as? String
@@ -189,6 +193,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell?.labelDescriotions.text = events2.description
 //        cell?.labelDate.text = events2.dates
        cell?.labelPlace.text = events2.place
+//        cell?.kudaGoImage.image = events2.images
         
         
         cell?.labelPrice.text = events2.price
