@@ -40,13 +40,13 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="359" height="323.5"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rib-zk-LtT">
-                                                            <rect key="frame" x="48" y="393.5" width="295" height="21"/>
+                                                            <rect key="frame" x="48" y="394" width="295" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlF-MN-b3M">
-                                                            <rect key="frame" x="48" y="424.5" width="295" height="21"/>
+                                                            <rect key="frame" x="48" y="425" width="295" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -64,28 +64,28 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dates" translatesAutoresizingMaskIntoConstraints="NO" id="QoG-Me-WS3">
-                                                            <rect key="frame" x="19" y="426" width="18" height="18"/>
+                                                            <rect key="frame" x="19" y="426.5" width="18" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="Da5-wq-o8d"/>
                                                                 <constraint firstAttribute="width" constant="18" id="dUj-j0-Hqp"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="place" translatesAutoresizingMaskIntoConstraints="NO" id="z0J-Pc-FVk">
-                                                            <rect key="frame" x="21" y="395" width="14" height="18"/>
+                                                            <rect key="frame" x="21" y="395.5" width="14" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="F5v-K5-8Je"/>
                                                                 <constraint firstAttribute="width" constant="14" id="uo7-Iz-wc9"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ruble" translatesAutoresizingMaskIntoConstraints="NO" id="gts-qP-sze">
-                                                            <rect key="frame" x="22" y="461" width="11" height="14"/>
+                                                            <rect key="frame" x="22" y="461.5" width="11" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="Bg0-VD-I38"/>
                                                                 <constraint firstAttribute="width" constant="11" id="we8-JN-WCu"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whk-rX-XjS">
-                                                            <rect key="frame" x="48" y="457.5" width="295" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whk-rX-XjS">
+                                                            <rect key="frame" x="48" y="458" width="295" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -169,6 +169,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.79999999999995" y="26.53673163418291"/>
+        </scene>
+        <!--Second View In Kuda Go-->
+        <scene sceneID="C7n-x4-7L1">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewInKudaGo" id="RNW-Mp-3Iw" customClass="secondViewInKudaGo" customModule="ApiKudagoTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lY7-f8-X3l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-Xc-TPh">
+                                <rect key="frame" x="0.0" y="59" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L45-fj-REc">
+                                        <rect key="frame" x="38" y="59" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="L45-fj-REc" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="38" id="7W6-wm-oiK"/>
+                                    <constraint firstAttribute="trailing" secondItem="L45-fj-REc" secondAttribute="trailing" constant="8" id="EPB-lc-c9L"/>
+                                    <constraint firstItem="L45-fj-REc" firstAttribute="top" secondItem="1ev-Xc-TPh" secondAttribute="top" constant="59" id="NUA-pu-gn7"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1ev-Xc-TPh" firstAttribute="top" secondItem="MBq-cd-dln" secondAttribute="top" id="TBN-df-5qn"/>
+                            <constraint firstItem="1ev-Xc-TPh" firstAttribute="bottom" secondItem="MBq-cd-dln" secondAttribute="bottom" id="hg3-xo-DB9"/>
+                            <constraint firstItem="1ev-Xc-TPh" firstAttribute="leading" secondItem="MBq-cd-dln" secondAttribute="leading" id="l29-Ex-MNB"/>
+                            <constraint firstItem="MBq-cd-dln" firstAttribute="trailing" secondItem="1ev-Xc-TPh" secondAttribute="trailing" id="lfu-iD-qZg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MBq-cd-dln"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="toU-O1-msp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.60000000000002" y="740.7796101949026"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zmV-lv-xEZ">

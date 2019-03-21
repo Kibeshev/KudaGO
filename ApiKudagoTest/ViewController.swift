@@ -150,7 +150,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        dateFormatterGet.timeStyle = .short
         
     
-        
+       
       
         
         
@@ -180,6 +180,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count // Тут напиши свой код
+        
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -231,6 +234,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
      
         }
+    //функиция которая получает событие по индексу
+    // очень крутая фунция всем советую 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        
+        
+//        let viewTwo = self.events[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SecondViewInKudaGo")
+        self.navigationController?.pushViewController(controller, animated: true)
+
+        
+        //        present(controller, animated: true, completion: nil)
+//
+//        let labelPuk = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//        labelPuk.center = CGPoint(x: 160, y: 285)
+//        labelPuk.textAlignment = .center
+//        self.view.addSubview(labelPuk)
+        
+        
+//        labelPuk.text = viewTwo.title
+        
+        
+        
+        
+    }
     }
 
 
