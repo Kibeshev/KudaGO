@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Nuke
+import Nuke
 
 class Event {
     

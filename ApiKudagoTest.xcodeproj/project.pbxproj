@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D2E26783A101B88034353C2 /* Pods_ApiKudagoTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAB0084B6112EB8575982C2 /* Pods_ApiKudagoTest.framework */; };
 		B56B99F4223FECA600954A35 /* CityList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B99F3223FECA600954A35 /* CityList.swift */; };
 		B56B99F6223FEE9500954A35 /* CityListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B99F5223FEE9500954A35 /* CityListCell.swift */; };
 		B56B99FA22437CC700954A35 /* SecondViewInKudaGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B99F922437CC700954A35 /* SecondViewInKudaGo.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CAB0084B6112EB8575982C2 /* Pods_ApiKudagoTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApiKudagoTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B508DF8F223D2ACF00E1CD95 /* ApiKudagoTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ApiKudagoTest.entitlements; sourceTree = "<group>"; };
 		B56B99F3223FECA600954A35 /* CityList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityList.swift; sourceTree = "<group>"; };
 		B56B99F5223FEE9500954A35 /* CityListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListCell.swift; sourceTree = "<group>"; };
@@ -31,6 +33,8 @@
 		B57DF56A222AFCC6000EA406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B57DF56C222AFCC6000EA406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B57DF575222D315E000EA406 /* KGCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KGCell.swift; sourceTree = "<group>"; };
+		CF51E03BCD70DFF2D0ADE091 /* Pods-ApiKudagoTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiKudagoTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApiKudagoTest/Pods-ApiKudagoTest.debug.xcconfig"; sourceTree = "<group>"; };
+		D67083FF08CA97F9BD3D82D8 /* Pods-ApiKudagoTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApiKudagoTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApiKudagoTest/Pods-ApiKudagoTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,17 +42,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2E26783A101B88034353C2 /* Pods_ApiKudagoTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C660F7AC1EF158C141D053F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF51E03BCD70DFF2D0ADE091 /* Pods-ApiKudagoTest.debug.xcconfig */,
+				D67083FF08CA97F9BD3D82D8 /* Pods-ApiKudagoTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		84215AC3847ECCCDCE4FD69E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CAB0084B6112EB8575982C2 /* Pods_ApiKudagoTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B57DF554222AFCC3000EA406 = {
 			isa = PBXGroup;
 			children = (
 				B57DF55F222AFCC3000EA406 /* ApiKudagoTest */,
 				B57DF55E222AFCC3000EA406 /* Products */,
+				4C660F7AC1EF158C141D053F /* Pods */,
+				84215AC3847ECCCDCE4FD69E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,9 +109,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B57DF56F222AFCC6000EA406 /* Build configuration list for PBXNativeTarget "ApiKudagoTest" */;
 			buildPhases = (
+				76B9EFED46C70C4CF29C2315 /* [CP] Check Pods Manifest.lock */,
 				B57DF559222AFCC3000EA406 /* Sources */,
 				B57DF55A222AFCC3000EA406 /* Frameworks */,
 				B57DF55B222AFCC3000EA406 /* Resources */,
+				6CB8DC23B1F6CBC99FE6ABF7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -148,6 +174,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6CB8DC23B1F6CBC99FE6ABF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ApiKudagoTest/Pods-ApiKudagoTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApiKudagoTest/Pods-ApiKudagoTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76B9EFED46C70C4CF29C2315 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ApiKudagoTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B57DF559222AFCC3000EA406 /* Sources */ = {
@@ -303,6 +368,7 @@
 		};
 		B57DF570222AFCC6000EA406 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF51E03BCD70DFF2D0ADE091 /* Pods-ApiKudagoTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -324,6 +390,7 @@
 		};
 		B57DF571222AFCC6000EA406 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D67083FF08CA97F9BD3D82D8 /* Pods-ApiKudagoTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
