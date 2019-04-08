@@ -9,109 +9,174 @@
 import UIKit
 import Nuke
 
-class Event {
-    
-    let title: String
-    let description: String
-    let price:String
-    let place:String?
-    let location:String?
-    let images: [String]
-//    let dates:Date
-    
-    init(title: String, description: String, price: String,place:String?, location:String?, images: [String]) {
-        self.title = title
-        self.description = description
-        self.price = price
-        self.place = place
-        self.location = location
-    
-       self.images = images
-//        self.dates = dates
+//class Event {
+//
+//    let title: String
+//    let description: String
+//    let price:String
+//    let place:String?
+//    let location:String?
+//    let images: [String]
+////    let dates:Date
+//
+//    init(title: String, description: String, price: String,place:String?, location:String?, images: [String]) {
+//        self.title = title
+//        self.description = description
+//        self.price = price
+//        self.place = place
+//        self.location = location
+//
+//       self.images = images
+////        self.dates = dates
+//
+//    }
+//
+//}
+// Короче, мы тут работаем с парсингом при помощи Codable
+// Создаем модельки, которые названием полей точь-в-точь повторяют названия полей в наших словарях
 
-    }
-    
+// Соответственно создаем сначала GetEventsRawResponse с полями count(простой Int), опциональными next, previous (String?) и массивом [Event] (который тоже Codable)
+
+// Внутри Event ещё лежит словарь с массивом картинок по ключу "images", соответсвенно я создал модель для картинки - Image, и там ещё внутри был ещё один словарь "sources", его я тоже моделькой завел, хотя для приложения он не пригодится, просто для примера, можно на самом деле удалить его использование
+
+// На самом деле можно не называть поля точь в точь, но для этого придется писать ещё дополнительный код, могу показать позже
+
+
+struct GetEventsRawResponse: Codable {
+    let count: Int
+    let next: String?
+    let previous: String?
+    let results: [Event]
 }
 
-class KudagoAPIManager {
+struct Event: Codable {
+    let id: Int
+    let title: String
+    let description: String
+    let body_text: String
+    let price: String
+    let place: Place?
+    let is_free: Bool
+    let images: [Image]?
+}
+struct Place: Codable {
+    let title: String?
+    let id: Int
+}
 
+struct Image: Codable {
+    let image: String
+    let source: Source
+}
+
+struct Source: Codable {
+    let name: String
+    let link: String
+}
+
+class KudaGoAPIManager {
+    
     func getEvents(completion: @escaping ([Event]?) -> Void) {
-        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text"
+        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text&expand=place"
         guard let url = URL(string: urlString) else {
+            completion(nil)
             return
         }
         
-        // Создаем задачу загрузки данных с сервера
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in // Замыкание
-            // Вызывается не в главном потоке потому что под капотом переходит в бэкграунд поток
-            
-            // Проверяем не nil ли data
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
-                // Преобразуем data в словарь [String: Any]
-                let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-                
-                // Пытаемся вытащить массив результатов [[String: Any]] по ключу "results"
-                if let results = dictionary??["results"] as? [[String: Any]] {
-                    // Выводим этот массив консоль
-                    print("results: \(results)")
-
-                    // Создаем пустой массив под наши ивенты
-                    var events: [Event] = []
-
-                    // Проходим по массиву результатов
-                    for element in results {
-                        // Пытаемся получить title и description по их ключам и привести их к String
-                        if let title = element["title"] as? String, let price = element["price"] as? String, let description = element["description"] as? String {
-                            
-                            let location = element["location"] as? String
-                            
-                            let place = element["place"] as? String
-                            
-                            // Мы вытаскиваем массив словарей из нашего словаря element по ключу images и пытаемся закастить к типу массива словарей ключ: значение
-                            let imagesDictionary = element["images"] as? [[String: Any]]
-                            
-                            // Создаем пустой массив под картинки чтобы его потом заполнить и положить в объект Event
-                            var images: [String] = []
-
-                            for imageDictionary in imagesDictionary ?? [] {
-                                if let imageString = imageDictionary["image"] as? String {
-                                    images.append(imageString)
-                                }
-                            }
-                            
-                            // Создаем объект ивента
-                            let event = Event(title: title, description: description, price: price, place: place, location: location, images: images)
-
-                            // Добавляем его в массив events
-                            events.append(event)
-                           
-                        }
-                    }
-                    
-                    // Выводим наш массив ивентов
-                    print(events)
-                    // Вызываем замыкание и передаем туда наши ивенты
-                    completion(events)
-                    // Обрываем выполнение функции чтобы комплишен ниже не вызвался
+                if let rawResponse = try? JSONDecoder().decode(GetEventsRawResponse.self, from: data) {
+                    completion(rawResponse.results)
                     return
                 }
-            } else {
-                completion(nil)
             }
-            
+            completion(nil)
         }
-        // Отправляем нашу задачу на выполнение
         task.resume()
     }
     
 }
 
+//class KudagoAPIManager {
+//
+//    func getEvents(completion: @escaping ([Event]?) -> Void) {
+//        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text"
+//        guard let url = URL(string: urlString) else {
+//            return
+//        }
+//
+//        // Создаем задачу загрузки данных с сервера
+//        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in // Замыкание
+//            // Вызывается не в главном потоке потому что под капотом переходит в бэкграунд поток
+//
+//            // Проверяем не nil ли data
+//            if let data = data {
+//                // Преобразуем data в словарь [String: Any]
+//                let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+//
+//                // Пытаемся вытащить массив результатов [[String: Any]] по ключу "results"
+//                if let results = dictionary??["results"] as? [[String: Any]] {
+//                    // Выводим этот массив консоль
+//                    print("results: \(results)")
+//
+//                    // Создаем пустой массив под наши ивенты
+//                    var events: [Event] = []
+//
+//                    // Проходим по массиву результатов
+//                    for element in results {
+//                        // Пытаемся получить title и description по их ключам и привести их к String
+//                        if let title = element["title"] as? String, let price = element["price"] as? String, let description = element["description"] as? String {
+//
+//                            let location = element["location"] as? String
+//
+//                            let place = element["place"] as? String
+//
+//                            // Мы вытаскиваем массив словарей из нашего словаря element по ключу images и пытаемся закастить к типу массива словарей ключ: значение
+//                            let imagesDictionary = element["images"] as? [[String: Any]]
+//
+//                            // Создаем пустой массив под картинки чтобы его потом заполнить и положить в объект Event
+//                            var images: [String] = []
+//
+//                            for imageDictionary in imagesDictionary ?? [] {
+//                                if let imageString = imageDictionary["image"] as? String {
+//                                    images.append(imageString)
+//                                }
+//                            }
+//
+//                            // Создаем объект ивента
+//                            let event = Event(title: title, description: description, price: price, place: place, location: location, images: images)
+//
+//                            // Добавляем его в массив events
+//                            events.append(event)
+//
+//                        }
+//                    }
+//
+//                    // Выводим наш массив ивентов
+//                    print(events)
+//                    // Вызываем замыкание и передаем туда наши ивенты
+//                    completion(events)
+//                    // Обрываем выполнение функции чтобы комплишен ниже не вызвался
+//                    return
+//                }
+//            } else {
+//                completion(nil)
+//            }
+//
+//        }
+//        // Отправляем нашу задачу на выполнение
+//        task.resume()
+//    }
+//
+//}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    let manager = KudagoAPIManager()
+    let manager = KudaGoAPIManager()
      var events: [Event] = []
+    
     
 //    let managerImage = DownloadImage()
 //     var getImage: [Image] = []
@@ -225,9 +290,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell?.labelTitle.text = events2.title
         cell?.labelDescriotions.text = events2.description
 //        cell?.labelDate.text = events2.dates
-        cell?.labelPlace.text = events2.place
-        if let image = events2.images.first {
-            if let imageURL = URL(string: image), let imageView = cell?.kudaGoImage {
+        cell?.labelPlace.text = events2.place?.title
+        if let image = events2.images?.first {
+            if let imageURL = URL(string: image.image), let imageView = cell?.kudaGoImage {
                 Nuke.loadImage(with: imageURL, into: imageView)
             }
         }
@@ -298,66 +363,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     }
 
-class Image {
-    
-    let image: String
-    
-    init(image: String){
-    self.image = image
-    }
-    
-}
 
 
-
-//class DownloadImage {
-//
-//    func getEvents(completion: @escaping ([Image]?) -> Void) {
-//        let urlImage = "https://kudago.com/public-api/v1.4/events/?fields=images"
-//        guard let url2 = URL(string: urlImage) else {
-//            return
-//        }
-//        let task2 = URLSession.shared.dataTask(with: url2) { (data, response, error) in
-//
-//
-//            if let data = data {
-//                // Преобразуем data в словарь [String: Any]
-//                let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-//
-//                // Пытаемся вытащить массив результатов [[String: Any]] по ключу "results"
-//                if let results = dictionary??["results"] as? [[String: Any]] {
-//                    // Выводим этот массив консоль
-//                    print("results: \(results)")
-//
-//                    // Создаем пустой массив под наши картринки
-//                    var eventsImage: [Image] = []
-//
-//                    // Проходим по массиву результатов
-//                    for element in results {
-//                        // Пытаемся получить image по их ключу и привести ее к String
-//                        if let image = element["image"] as? String
-//                        {
-//                    let eventImage = Image(image: image)
-//                            // Добавляем ее в массив eventsImage
-//                            eventsImage.append(eventImage)
-//
-//                        }
-//                    }
-//
-//                    // Выводим наш массив ивентов
-//                    print(eventsImage)
-//                    // Вызываем замыкание и передаем туда наши ивенты
-//                    completion(eventsImage)
-//                    // Обрываем выполнение функции чтобы комплишен ниже не вызвался
-//                    return
-//                }
-//            } else {
-//                completion(nil)
-//            }
-//
-//        }
-//        // Отправляем нашу задачу на выполнение
-//        task2.resume()
-//    }
-//
-//}
