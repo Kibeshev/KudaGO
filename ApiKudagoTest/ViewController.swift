@@ -16,16 +16,17 @@ class Event {
     let price:String
     let place:String?
     let location:String?
-//    let images:UIImage
+    let images: [String]
 //    let dates:Date
     
-    init(title: String, description: String, price: String,place:String?, location:String?) {
+    init(title: String, description: String, price: String,place:String?, location:String?, images: [String]) {
         self.title = title
         self.description = description
         self.price = price
         self.place = place
         self.location = location
-//        self.images = images
+    
+       self.images = images
 //        self.dates = dates
 
     }
@@ -39,6 +40,7 @@ class KudagoAPIManager {
         guard let url = URL(string: urlString) else {
             return
         }
+        
         // Создаем задачу загрузки данных с сервера
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in // Замыкание
             // Вызывается не в главном потоке потому что под капотом переходит в бэкграунд поток
@@ -59,16 +61,27 @@ class KudagoAPIManager {
                     // Проходим по массиву результатов
                     for element in results {
                         // Пытаемся получить title и description по их ключам и привести их к String
-                        if let title = element["title"] as? String,
-                            let price = element["price"] as? String,
-//                            let images = element["images"] as? UIImage,
-                           
-                            let description = element["description"] as? String {
+                        if let title = element["title"] as? String, let price = element["price"] as? String, let description = element["description"] as? String {
+                            
                             let location = element["location"] as? String
                             
                             let place = element["place"] as? String
+                            
+                            // Мы вытаскиваем массив словарей из нашего словаря element по ключу images и пытаемся закастить к типу массива словарей ключ: значение
+                            let imagesDictionary = element["images"] as? [[String: Any]]
+                            
+                            // Создаем пустой массив под картинки чтобы его потом заполнить и положить в объект Event
+                            var images: [String] = []
+
+                            for imageDictionary in imagesDictionary ?? [] {
+                                if let imageString = imageDictionary["image"] as? String {
+                                    images.append(imageString)
+                                }
+                            }
+                            
                             // Создаем объект ивента
-                            let event = Event(title: title, description: description, price: price, place: place, location: location)
+                            let event = Event(title: title, description: description, price: price, place: place, location: location, images: images)
+
                             // Добавляем его в массив events
                             events.append(event)
                            
@@ -98,8 +111,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let manager = KudagoAPIManager()
+     var events: [Event] = []
     
-    var events: [Event] = []
+//    let managerImage = DownloadImage()
+//     var getImage: [Image] = []
+    
+    
     
     @IBOutlet weak var cityButton: UIBarButtonItem!
     
@@ -112,6 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
 //        tableView.estimatedRowHeight = 150
 //        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -122,16 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        cityButton.image = UIImage(named: "arrow")
 //        cityButton.
-        let logo = UIImage(named: "leftBarImage")
-        let imageView = UIImageView(image:logo)
-        self.navigationItem.titleView = imageView
-        imageView.frame = CGRect(x: 0.0, y: 0.0, width: 106.4, height: 44)
-         let imageViev = UIBarButtonItem.init(customView: imageView)
-        let widthConstraint = imageView.widthAnchor.constraint(equalToConstant: 106.4)
-        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 44)
-        heightConstraint.isActive = true
-        widthConstraint.isActive = true
-        navigationItem.leftBarButtonItem = imageViev
+        
 //        106.7 44
         
 //        navigationItem
@@ -178,6 +187,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let logo = UIImage(named: "leftBarImage")
+        let imageView = UIImageView(image:logo)
+        
+        let imageViev = UIBarButtonItem.init(customView: imageView)
+        let widthConstraint = imageView.widthAnchor.constraint(equalToConstant: 106.4)
+        let heightConstraint = imageView.heightAnchor.constraint(equalToConstant: 44)
+        heightConstraint.isActive = true
+        widthConstraint.isActive = true
+        navigationItem.leftBarButtonItem = imageViev
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count // Тут напиши свой код
         
@@ -187,16 +210,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+//       Nuke.loadImage(with: , into: Event)
+        
         
         
        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? KGCell
         
+     
+        
+        
+        
         let events2 = self.events[indexPath.row]
+        
         cell?.labelTitle.text = events2.title
         cell?.labelDescriotions.text = events2.description
 //        cell?.labelDate.text = events2.dates
-       cell?.labelPlace.text = events2.place
-//        cell?.kudaGoImage.image = events2.images
+        cell?.labelPlace.text = events2.place
+        if let image = events2.images.first {
+            if let imageURL = URL(string: image), let imageView = cell?.kudaGoImage {
+                Nuke.loadImage(with: imageURL, into: imageView)
+            }
+        }
         
         
         cell?.labelPrice.text = events2.price
@@ -264,7 +298,66 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     }
 
+class Image {
+    
+    let image: String
+    
+    init(image: String){
+    self.image = image
+    }
+    
+}
 
 
 
-
+//class DownloadImage {
+//
+//    func getEvents(completion: @escaping ([Image]?) -> Void) {
+//        let urlImage = "https://kudago.com/public-api/v1.4/events/?fields=images"
+//        guard let url2 = URL(string: urlImage) else {
+//            return
+//        }
+//        let task2 = URLSession.shared.dataTask(with: url2) { (data, response, error) in
+//
+//
+//            if let data = data {
+//                // Преобразуем data в словарь [String: Any]
+//                let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+//
+//                // Пытаемся вытащить массив результатов [[String: Any]] по ключу "results"
+//                if let results = dictionary??["results"] as? [[String: Any]] {
+//                    // Выводим этот массив консоль
+//                    print("results: \(results)")
+//
+//                    // Создаем пустой массив под наши картринки
+//                    var eventsImage: [Image] = []
+//
+//                    // Проходим по массиву результатов
+//                    for element in results {
+//                        // Пытаемся получить image по их ключу и привести ее к String
+//                        if let image = element["image"] as? String
+//                        {
+//                    let eventImage = Image(image: image)
+//                            // Добавляем ее в массив eventsImage
+//                            eventsImage.append(eventImage)
+//
+//                        }
+//                    }
+//
+//                    // Выводим наш массив ивентов
+//                    print(eventsImage)
+//                    // Вызываем замыкание и передаем туда наши ивенты
+//                    completion(eventsImage)
+//                    // Обрываем выполнение функции чтобы комплишен ниже не вызвался
+//                    return
+//                }
+//            } else {
+//                completion(nil)
+//            }
+//
+//        }
+//        // Отправляем нашу задачу на выполнение
+//        task2.resume()
+//    }
+//
+//}

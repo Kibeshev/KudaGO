@@ -14,7 +14,7 @@ class KGCell: UITableViewCell {
     
     @IBOutlet weak var labelDescriotions: UILabel!
     
-   @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelPlace: UILabel!
     @IBOutlet weak var labelPrice: UILabel!
     
@@ -25,33 +25,19 @@ class KGCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        kudaGoImage.frame = CGRect(x: 2, y: 85, width: 373, height: 427)
-        
-        
+        // это я сделал тень у своей вьюшки
+        viewInCell.layer.shadowColor = UIColor.black.cgColor
+        viewInCell.layer.shadowOpacity = 0.5
+        viewInCell.layer.shadowOffset = CGSize(width: 10, height: 5)
+        viewInCell.layer.shadowRadius = 12
+        viewInCell.layer.shadowPath = UIBezierPath(rect: viewInCell.bounds).cgPath
+        viewInCell.layer.shouldRasterize = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        
         viewInCell.layer.cornerRadius = 16
         viewInCell.layer.masksToBounds = true
-        
-        // это я сделал тень у своей вьюшки
-        viewInCell.layer.shadowColor = UIColor.black.cgColor
-        viewInCell.layer.shadowOpacity = 0.5
-        viewInCell.layer.shadowOffset = CGSize.zero
-        viewInCell.layer.shadowRadius = 12
-        viewInCell.layer.shadowPath = UIBezierPath(rect: viewInCell.bounds).cgPath
-        viewInCell.layer.shouldRasterize = true
-        
-        
-      
-        
-        
-
-        // Configure the view for the selected state
     }
 
 }
