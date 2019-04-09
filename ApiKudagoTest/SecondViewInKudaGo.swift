@@ -8,16 +8,36 @@
 
 import UIKit
 
+
+
+
 class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet weak var labelTextSecondView: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var labelBodyText: UILabel!
     
     
-
+    var event: Event!
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+      labelBodyText.text = self.event.body_text
         
         
+        
+        
+    
+       
+      
 
         // Do any additional setup after loading the view.
     }

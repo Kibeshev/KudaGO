@@ -275,7 +275,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//       Nuke.loadImage(with: , into: Event)
+
         
         
         
@@ -343,8 +343,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        let viewTwo = self.events[indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SecondViewInKudaGo")
-        self.navigationController?.pushViewController(controller, animated: true)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SecondViewInKudaGo") as? SecondViewInKudaGo
+        self.navigationController?.pushViewController(controller!, animated: true)
+        controller?.event = self.events[indexPath.row]
+        
+        
 
         
         //        present(controller, animated: true, completion: nil)
