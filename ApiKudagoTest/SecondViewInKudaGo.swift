@@ -13,8 +13,13 @@ import UIKit
 
 class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     
+    @IBOutlet weak var labelRuble: UILabel!
+    @IBOutlet weak var labelDates: UILabel!
+    @IBOutlet weak var labelPlace: UILabel!
+    @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var labelDescriptions: UILabel!
     @IBOutlet weak var labelBodyText: UILabel!
     
     
@@ -30,7 +35,20 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
       labelBodyText.text = self.event.body_text
+        labelTitle.text = self.event.title
+        labelDescriptions.text = self.event.description
+      labelPlace.text = self.event.place?.title
+        
+        
+        if self.event.price != ""{
+             labelRuble.text = self.event.price
+            } else {
+           labelRuble.text =  "Бесплатно"
+        }
+        
+        
         
         
         

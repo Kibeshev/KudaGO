@@ -52,12 +52,17 @@ struct GetEventsRawResponse: Codable {
 struct Event: Codable {
     let id: Int
     let title: String
+    let dates: [DateEvent]?
     let description: String
     let body_text: String
     let price: String
     let place: Place?
     let is_free: Bool
     let images: [Image]?
+}
+struct DateEvent: Codable {
+    let start: Int
+    let end: Int
 }
 struct Place: Codable {
     let title: String?
@@ -76,8 +81,10 @@ struct Source: Codable {
 
 class KudaGoAPIManager {
     
+    
     func getEvents(completion: @escaping ([Event]?) -> Void) {
-        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text&expand=place"
+        let dateNow = Date().timeIntervalSince1970
+        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text&expand=place&actual_since=\(dateNow)"
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
@@ -222,6 +229,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
 //        dateFormatterGet.dateStyle = .short
 //        dateFormatterGet.timeStyle = .short
+       
+      
         
     
        
@@ -287,10 +296,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let events2 = self.events[indexPath.row]
         
+        
         cell?.labelTitle.text = events2.title
         cell?.labelDescriotions.text = events2.description
-//        cell?.labelDate.text = events2.dates
+       
         cell?.labelPlace.text = events2.place?.title
+        
         if let image = events2.images?.first {
             if let imageURL = URL(string: image.image), let imageView = cell?.kudaGoImage {
                 Nuke.loadImage(with: imageURL, into: imageView)
@@ -305,6 +316,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
              cell?.labelPrice.text = "Бесплатно"
         }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "dd"
+//        dateFormatter.timeStyle = .none
+        let date = Date(timeIntervalSince1970: TimeInterval(events2.dates?.first?.start ?? 0))
+       let dateStart = dateFormatter.string(from: date)
+        
+        let dateEnd = Date(timeIntervalSince1970: TimeInterval(events2.dates?.first?.end ?? 0))
+        dateFormatter.dateFormat = "dd MMMM"
+       let dateEndString = dateFormatter.string(from: dateEnd)
+        
+        
+         cell?.labelDate.text = "\(dateStart) - \(dateEndString)"
         
         
 //        let cellCity = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath) as? CellCityList
@@ -346,6 +371,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let controller = storyboard.instantiateViewController(withIdentifier: "SecondViewInKudaGo") as? SecondViewInKudaGo
         self.navigationController?.pushViewController(controller!, animated: true)
         controller?.event = self.events[indexPath.row]
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         
 
