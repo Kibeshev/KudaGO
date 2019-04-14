@@ -51,7 +51,7 @@ struct GetEventsRawResponse: Codable {
 
 struct Event: Codable {
     let id: Int
-    let title: String
+    let title: String 
     let dates: [DateEvent]?
     let description: String
     let body_text: String

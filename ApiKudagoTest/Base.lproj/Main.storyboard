@@ -205,12 +205,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-Xc-TPh">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="A3t-SW-npy">
-                                        <rect key="frame" x="0.0" y="0.0" width="377" height="268"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="KlO-Jo-rMt"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BL-tn-cGm">
                                         <rect key="frame" x="43" y="341" width="316" height="31"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
@@ -218,7 +212,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LabelTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Im4-or-CqX">
-                                        <rect key="frame" x="40" y="276" width="75" height="21"/>
+                                        <rect key="frame" x="40" y="256" width="75" height="20"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -268,11 +262,29 @@
                                             <constraint firstAttribute="height" constant="18" id="vZH-jY-etF"/>
                                         </constraints>
                                     </imageView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fKM-EY-GM7">
+                                        <rect key="frame" x="0.0" y="46" width="375" height="128"/>
+                                        <subviews>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="K9w-3f-Czf">
+                                                <rect key="frame" x="160" y="224" width="39" height="37"/>
+                                                <color key="pageIndicatorTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </pageControl>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="OsE-Aa-kGd"/>
+                                            <constraint firstItem="K9w-3f-Czf" firstAttribute="top" secondItem="fKM-EY-GM7" secondAttribute="top" constant="224" id="RYn-VZ-Oxg"/>
+                                            <constraint firstAttribute="trailing" secondItem="K9w-3f-Czf" secondAttribute="trailing" constant="159" id="W7i-OY-gPz"/>
+                                            <constraint firstItem="K9w-3f-Czf" firstAttribute="leading" secondItem="fKM-EY-GM7" secondAttribute="leading" constant="160" id="bRs-Le-WCF"/>
+                                        </constraints>
+                                    </scrollView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="wQX-Rv-BUX" firstAttribute="leading" secondItem="ANu-n6-gv5" secondAttribute="trailing" constant="20" id="2Hm-LE-EB1"/>
-                                    <constraint firstItem="A3t-SW-npy" firstAttribute="top" secondItem="1ev-Xc-TPh" secondAttribute="top" id="2Nf-Rb-Ejx"/>
                                     <constraint firstItem="gRn-XO-5Mq" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="8" id="6tY-tP-ugW"/>
+                                    <constraint firstItem="fKM-EY-GM7" firstAttribute="top" secondItem="1ev-Xc-TPh" secondAttribute="top" id="BvE-hX-t5a"/>
+                                    <constraint firstAttribute="trailing" secondItem="fKM-EY-GM7" secondAttribute="trailing" id="EYi-uT-aWr"/>
+                                    <constraint firstItem="Im4-or-CqX" firstAttribute="top" secondItem="fKM-EY-GM7" secondAttribute="bottom" constant="24" id="FKQ-tf-W50"/>
                                     <constraint firstAttribute="trailing" secondItem="9BL-tn-cGm" secondAttribute="trailing" constant="8" id="Hs7-Dp-BSt"/>
                                     <constraint firstItem="mZ7-cN-J1F" firstAttribute="top" secondItem="Im4-or-CqX" secondAttribute="bottom" constant="16" id="KxQ-X8-heq"/>
                                     <constraint firstItem="Hgy-35-gba" firstAttribute="leading" secondItem="NcI-ua-QnF" secondAttribute="trailing" constant="20" id="OPy-bX-H66"/>
@@ -282,17 +294,15 @@
                                     <constraint firstAttribute="trailing" secondItem="mZ7-cN-J1F" secondAttribute="trailing" constant="8" id="W0m-b6-eaE"/>
                                     <constraint firstItem="d7a-Od-IG4" firstAttribute="top" secondItem="wQX-Rv-BUX" secondAttribute="bottom" constant="13" id="WY0-Ok-r6W"/>
                                     <constraint firstAttribute="trailing" secondItem="Hgy-35-gba" secondAttribute="trailing" constant="8" id="YdJ-gH-Eq9"/>
-                                    <constraint firstItem="A3t-SW-npy" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" id="ZVH-ua-j8V"/>
                                     <constraint firstItem="9BL-tn-cGm" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="8" id="ZdN-ja-Y6m"/>
-                                    <constraint firstAttribute="trailing" secondItem="A3t-SW-npy" secondAttribute="trailing" id="ax6-xm-gyf"/>
                                     <constraint firstAttribute="bottom" secondItem="NcI-ua-QnF" secondAttribute="bottom" constant="8" id="c4l-lZ-0BR"/>
                                     <constraint firstItem="NcI-ua-QnF" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="8" id="k89-2y-4Bc"/>
                                     <constraint firstItem="gRn-XO-5Mq" firstAttribute="top" secondItem="ANu-n6-gv5" secondAttribute="bottom" constant="13" id="kxK-N2-M5Z"/>
                                     <constraint firstAttribute="bottom" secondItem="Hgy-35-gba" secondAttribute="bottom" constant="8" id="ntl-ha-Ytb"/>
                                     <constraint firstItem="9BL-tn-cGm" firstAttribute="top" secondItem="mZ7-cN-J1F" secondAttribute="bottom" constant="16" id="o3q-d7-4Zm"/>
+                                    <constraint firstItem="fKM-EY-GM7" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" id="rnL-w8-fER"/>
                                     <constraint firstItem="ANu-n6-gv5" firstAttribute="top" secondItem="9BL-tn-cGm" secondAttribute="bottom" constant="27" id="rxS-gG-GCR"/>
                                     <constraint firstAttribute="trailing" secondItem="d7a-Od-IG4" secondAttribute="trailing" constant="8" id="t4H-ca-7gM"/>
-                                    <constraint firstItem="Im4-or-CqX" firstAttribute="top" secondItem="A3t-SW-npy" secondAttribute="bottom" constant="16" id="tJl-eJ-vvn"/>
                                     <constraint firstAttribute="trailing" secondItem="wQX-Rv-BUX" secondAttribute="trailing" constant="8" id="vLE-mk-EXT"/>
                                     <constraint firstItem="Im4-or-CqX" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="8" id="vjz-4G-YCx"/>
                                     <constraint firstItem="mZ7-cN-J1F" firstAttribute="leading" secondItem="1ev-Xc-TPh" secondAttribute="leading" constant="8" id="vqV-Os-XEV"/>
@@ -305,8 +315,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1ev-Xc-TPh" firstAttribute="width" secondItem="lY7-f8-X3l" secondAttribute="width" id="5ng-YS-ruk"/>
-                            <constraint firstItem="A3t-SW-npy" firstAttribute="width" secondItem="lY7-f8-X3l" secondAttribute="width" id="MYs-8w-8r9"/>
                             <constraint firstItem="1ev-Xc-TPh" firstAttribute="top" secondItem="MBq-cd-dln" secondAttribute="top" id="TBN-df-5qn"/>
+                            <constraint firstItem="fKM-EY-GM7" firstAttribute="width" secondItem="lY7-f8-X3l" secondAttribute="width" id="azh-a0-5iF"/>
                             <constraint firstItem="1ev-Xc-TPh" firstAttribute="bottom" secondItem="MBq-cd-dln" secondAttribute="bottom" id="hg3-xo-DB9"/>
                             <constraint firstItem="1ev-Xc-TPh" firstAttribute="leading" secondItem="MBq-cd-dln" secondAttribute="leading" id="l29-Ex-MNB"/>
                             <constraint firstItem="MBq-cd-dln" firstAttribute="trailing" secondItem="1ev-Xc-TPh" secondAttribute="trailing" id="lfu-iD-qZg"/>
@@ -315,12 +325,14 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="ScrollForImage" destination="fKM-EY-GM7" id="LnU-zA-km6"/>
                         <outlet property="labelBodyText" destination="9BL-tn-cGm" id="fTb-0L-hPN"/>
                         <outlet property="labelDates" destination="d7a-Od-IG4" id="evk-w8-OMe"/>
                         <outlet property="labelDescriptions" destination="mZ7-cN-J1F" id="2My-v3-Pzv"/>
                         <outlet property="labelPlace" destination="wQX-Rv-BUX" id="dHH-yZ-JEH"/>
                         <outlet property="labelRuble" destination="Hgy-35-gba" id="HhV-a7-W4g"/>
                         <outlet property="labelTitle" destination="Im4-or-CqX" id="B6g-ak-Fl2"/>
+                        <outlet property="pageControlImage" destination="K9w-3f-Czf" id="DuF-ho-7Lm"/>
                         <outlet property="scrollView" destination="1ev-Xc-TPh" id="wsD-aR-i4b"/>
                     </connections>
                 </viewController>
@@ -423,7 +435,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="359" height="160"/>
         <image name="dates" width="18" height="18"/>
         <image name="place" width="14" height="18"/>
         <image name="ruble" width="11" height="14"/>
