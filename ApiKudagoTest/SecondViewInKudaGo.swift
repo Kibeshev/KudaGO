@@ -27,13 +27,7 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     
     
     var event: Event!
-    
-    
-    
-    
-    
-    
-    
+//    var imageSecondView: [Image]!
     
     
     override func viewDidLoad() {
@@ -51,47 +45,38 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
            labelRuble.text =  "Бесплатно"
         }
         
-        var sliderImagesArray = NSMutableArray()
-        sliderImagesArray = [event.images?.randomElement() as Any]
+        
+        var sliderImagesArray = event.images
         scrollForImage.delegate = self
 
-        for i in 0..<sliderImagesArray.count {
-            var imageViewCarousel : UIImageView?
-            let xOrigin = self.scrollForImage.frame.size.width * CGFloat(i)
-            imageViewCarousel = UIImageView(frame: CGRect(x: xOrigin, y: 0, width: self.scrollForImage.frame.size.width, height: self.scrollForImage.frame.size.height))
-            imageViewCarousel?.isUserInteractionEnabled = true
-            let urlStr = sliderImagesArray.object(at: i)
-            print(scrollForImage,imageViewCarousel as Any, urlStr)
-            if let image = self.event.images?.randomElement() {
-                if let imageURL = URL(string: image.image), let imageView = imageViewCarousel {
-                    Nuke.loadImage(with: imageURL, into: imageView)
-                }
-                self.scrollForImage.isPagingEnabled = true
-                self.scrollForImage.bounces = false
-                self.scrollForImage.showsVerticalScrollIndicator = false
-                self.scrollForImage.showsHorizontalScrollIndicator = false
-                self.scrollForImage.contentSize = CGSize(width:
-                    self.scrollForImage.frame.size.width * CGFloat(sliderImagesArray.count), height: self.scrollForImage.frame.size.height)
-                pageControlImage.addTarget(self, action: #selector(changePage(sender: )), for: UIControl.Event.valueChanged)
-                
-                self.pageControlImage.numberOfPages = sliderImagesArray.count
-                self.pageControlImage.currentPage = 0
-                self.pageControlImage.tintColor = UIColor.red
-                self.pageControlImage.pageIndicatorTintColor = UIColor.black
-                self.pageControlImage.currentPageIndicatorTintColor = UIColor.blue
-            }
-      
-        
-        
-        
-        
-        
-        
-    
-       
-      
+        for i in 0..<sliderImagesArray!.count {
+            let xOrigin = UIApplication.shared.keyWindow!.bounds.width * CGFloat(i)
+            let imageViewCarousel = UIImageView()
+            imageViewCarousel.isUserInteractionEnabled = true
+            imageViewCarousel.frame = CGRect(x: xOrigin, y: 0, width: UIApplication.shared.keyWindow!.bounds.width, height: 240)
+            scrollForImage.addSubview(imageViewCarousel)
 
-        // Do any additional setup after loading the view.
+            let urlStr = sliderImagesArray![i]
+
+            if let imageURL = URL(string: urlStr.image) {
+                Nuke.loadImage(with: imageURL, into: imageViewCarousel)
+            }
+        }
+
+        self.scrollForImage.isPagingEnabled = true
+        //self.scrollForImage.bounces = false
+        //self.scrollForImage.showsVerticalScrollIndicator = false
+        //self.scrollForImage.showsHorizontalScrollIndicator = false
+        self.scrollForImage.contentSize = CGSize(width:
+            UIApplication.shared.keyWindow!.bounds.width * CGFloat(sliderImagesArray!.count), height: 240 )
+        pageControlImage.addTarget(self, action: #selector(changePage(sender: )), for: UIControl.Event.valueChanged)
+        
+        self.pageControlImage.numberOfPages = sliderImagesArray!.count
+        self.pageControlImage.currentPage = 0
+        self.pageControlImage.tintColor = UIColor.red
+        self.pageControlImage.pageIndicatorTintColor = UIColor.black
+        self.pageControlImage.currentPageIndicatorTintColor = UIColor.blue
+        
     }
  
     
@@ -106,10 +91,9 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     }
     */
 
-}
     @objc func  changePage(sender: AnyObject) -> () {
-        let x = CGFloat(pageControlImage.currentPage) * scrollForImage.frame.size.width
-        scrollForImage.setContentOffset(CGPoint(x: x,y :0), animated: true)
+        //let x = CGFloat(pageControlImage.currentPage) * scrollForImage.frame.size.width
+        //scrollForImage.setContentOffset(CGPoint(x: x,y :0), animated: true)
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
