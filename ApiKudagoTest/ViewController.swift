@@ -185,6 +185,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      var events: [Event] = []
     
     
+    
 //    let managerImage = DownloadImage()
 //     var getImage: [Image] = []
     
@@ -206,7 +207,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         
-        cityButton.title = "Москва ˅"
+        cityButton.title = ""
         
        
         
@@ -273,6 +274,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         widthConstraint.isActive = true
         navigationItem.leftBarButtonItem = imageViev
     }
+   
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -281,6 +283,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -358,6 +361,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
      
         }
+ 
     //функиция которая получает событие по индексу
     // очень крутая фунция всем советую 
     
@@ -374,6 +378,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+       
+    
+    
+    //This method will call when you press button.
+ 
         
 
         
@@ -391,6 +400,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+  
     }
 
 

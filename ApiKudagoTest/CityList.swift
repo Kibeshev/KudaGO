@@ -104,6 +104,7 @@ class CityList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         
         
+        
               //добавляем кнопочку в навигуцию для бара
        
         
@@ -113,8 +114,6 @@ class CityList: UIViewController, UITableViewDelegate, UITableViewDataSource {
         backButton.setImage(UIImage(named: "backButton"), for: .normal)
         backButton.setTitleColor(backButton.tintColor, for: .normal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        
-        
         //нужно чтоб наша кнопочка возвращала экарн назад
         backButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
 //

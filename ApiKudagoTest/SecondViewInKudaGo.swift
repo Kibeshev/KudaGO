@@ -29,10 +29,36 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     var event: Event!
 //    var imageSecondView: [Image]!
     
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //create a new button
+        let button = UIButton(type: .custom)
+        //set image for button
+        button.setImage(UIImage(named: "navBarImageSecondView"), for: .normal)
+        //add function for button
+        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        //set frame
+        button.frame = CGRect(x: 0, y: 0, width: 375, height: 64)
+        
+        let barButton = UIBarButtonItem(customView: button)
+        //assign button to navigationbar
+        self.navigationItem.leftBarButtonItem = barButton
+
+        //нужно чтоб наша кнопочка возвращала экарн назад
+        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+
+       
+        
+ // делаю прозрачный навигейшн бар
+self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    self.navigationController?.navigationBar.shadowImage = UIImage()
+    self.navigationController?.navigationBar.isTranslucent = true
+    self.navigationController?.view.backgroundColor = .clear
+        
+        
+        // вывожу данные в лейблы
       labelBodyText.text = self.event.body_text
         labelTitle.text = self.event.title
         labelDescriptions.text = self.event.description
@@ -45,7 +71,7 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
            labelRuble.text =  "Бесплатно"
         }
         
-        
+        // делаю массив картинок в горизонтальном скролл вью 
         var sliderImagesArray = event.images
         scrollForImage.delegate = self
 
@@ -78,6 +104,8 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
         self.pageControlImage.currentPageIndicatorTintColor = UIColor.blue
         
     }
+    
+    
  
     
 
@@ -95,6 +123,15 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
         //let x = CGFloat(pageControlImage.currentPage) * scrollForImage.frame.size.width
         //scrollForImage.setContentOffset(CGPoint(x: x,y :0), animated: true)
     }
+    @objc func closeButtonAction(){
+        dismiss(animated: true, completion: nil)
+    }
+    @objc func fbButtonPressed() {
+        
+        print("Share to fb")
+    }
+    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let pageNumber = round(scrollForImage.contentOffset.x / scrollForImage.frame.size.width)
