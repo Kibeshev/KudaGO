@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D2E26783A101B88034353C2 /* Pods_ApiKudagoTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAB0084B6112EB8575982C2 /* Pods_ApiKudagoTest.framework */; };
+		B51FC8C1226DEAAF00F25CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51FC8C0226DEAAF00F25CC1 /* Assets.xcassets */; };
 		B53ED7A9225E395900CB2BFD /* SF-Pro-Display-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B53ED78B225E395300CB2BFD /* SF-Pro-Display-BoldItalic.otf */; };
 		B53ED7AA225E395900CB2BFD /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B53ED78C225E395300CB2BFD /* SF-Pro-Display-UltralightItalic.otf */; };
 		B53ED7AB225E395900CB2BFD /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B53ED78D225E395400CB2BFD /* SF-Pro-Text-Light.otf */; };
@@ -44,7 +45,6 @@
 		B57DF561222AFCC3000EA406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DF560222AFCC3000EA406 /* AppDelegate.swift */; };
 		B57DF563222AFCC3000EA406 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DF562222AFCC3000EA406 /* ViewController.swift */; };
 		B57DF566222AFCC3000EA406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57DF564222AFCC3000EA406 /* Main.storyboard */; };
-		B57DF568222AFCC6000EA406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57DF567222AFCC6000EA406 /* Assets.xcassets */; };
 		B57DF56B222AFCC6000EA406 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B57DF569222AFCC6000EA406 /* LaunchScreen.storyboard */; };
 		B57DF576222D315E000EA406 /* KGCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DF575222D315E000EA406 /* KGCell.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		2CAB0084B6112EB8575982C2 /* Pods_ApiKudagoTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApiKudagoTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B508DF8F223D2ACF00E1CD95 /* ApiKudagoTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ApiKudagoTest.entitlements; sourceTree = "<group>"; };
+		B51FC8C0226DEAAF00F25CC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B53ED78B225E395300CB2BFD /* SF-Pro-Display-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-BoldItalic.otf"; sourceTree = "<group>"; };
 		B53ED78C225E395300CB2BFD /* SF-Pro-Display-UltralightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-UltralightItalic.otf"; sourceTree = "<group>"; };
 		B53ED78D225E395400CB2BFD /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		B57DF560222AFCC3000EA406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B57DF562222AFCC3000EA406 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B57DF565222AFCC3000EA406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B57DF567222AFCC6000EA406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B57DF56A222AFCC6000EA406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B57DF56C222AFCC6000EA406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B57DF575222D315E000EA406 /* KGCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KGCell.swift; sourceTree = "<group>"; };
@@ -188,8 +188,8 @@
 				B57DF560222AFCC3000EA406 /* AppDelegate.swift */,
 				B57DF562222AFCC3000EA406 /* ViewController.swift */,
 				B57DF564222AFCC3000EA406 /* Main.storyboard */,
-				B57DF567222AFCC6000EA406 /* Assets.xcassets */,
 				B57DF569222AFCC6000EA406 /* LaunchScreen.storyboard */,
+				B51FC8C0226DEAAF00F25CC1 /* Assets.xcassets */,
 				B57DF56C222AFCC6000EA406 /* Info.plist */,
 				B57DF575222D315E000EA406 /* KGCell.swift */,
 				B56B99F3223FECA600954A35 /* CityList.swift */,
@@ -274,11 +274,11 @@
 				B57DF56B222AFCC6000EA406 /* LaunchScreen.storyboard in Resources */,
 				B53ED7C3225E395900CB2BFD /* SF-Pro-Text-Heavy.otf in Resources */,
 				B53ED7AF225E395900CB2BFD /* SF-Pro-Display-Heavy.otf in Resources */,
-				B57DF568222AFCC6000EA406 /* Assets.xcassets in Resources */,
 				B53ED7B4225E395900CB2BFD /* SF-Pro-Text-Regular.otf in Resources */,
 				B53ED7C0225E395900CB2BFD /* SF-Pro-Text-Medium.otf in Resources */,
 				B53ED7AD225E395900CB2BFD /* SF-Pro-Display-LightItalic.otf in Resources */,
 				B53ED7BD225E395900CB2BFD /* SF-Pro-Display-Thin.otf in Resources */,
+				B51FC8C1226DEAAF00F25CC1 /* Assets.xcassets in Resources */,
 				B53ED7AC225E395900CB2BFD /* SF-Pro-Display-Ultralight.otf in Resources */,
 				B53ED7B8225E395900CB2BFD /* SF-Pro-Display-Light.otf in Resources */,
 				B53ED7BC225E395900CB2BFD /* SF-Pro-Display-Bold.otf in Resources */,

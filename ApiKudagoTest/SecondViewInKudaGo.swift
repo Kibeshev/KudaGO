@@ -28,7 +28,9 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
     
     var event: Event!
 //    var imageSecondView: [Image]!
-    
+    @objc func buttonAction(sender: UIButton!) {
+     navigationController?.popViewController(animated: true)
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +40,18 @@ class SecondViewInKudaGo: UIViewController, UIScrollViewDelegate {
         //set image for button
         button.setImage(UIImage(named: "navBarImageSecondView"), for: .normal)
         //add function for button
-        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
         //set frame
-        button.frame = CGRect(x: 0, y: 0, width: 375, height: 64)
+        button.frame = CGRect(x: 8, y: 27, width: 48, height: 32)
         
         let barButton = UIBarButtonItem(customView: button)
         //assign button to navigationbar
         self.navigationItem.leftBarButtonItem = barButton
 
         //нужно чтоб наша кнопочка возвращала экарн назад
-        button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        
 
        
         
@@ -123,13 +127,8 @@ self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .def
         //let x = CGFloat(pageControlImage.currentPage) * scrollForImage.frame.size.width
         //scrollForImage.setContentOffset(CGPoint(x: x,y :0), animated: true)
     }
-    @objc func closeButtonAction(){
-        dismiss(animated: true, completion: nil)
-    }
-    @objc func fbButtonPressed() {
-        
-        print("Share to fb")
-    }
+    
+
     
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

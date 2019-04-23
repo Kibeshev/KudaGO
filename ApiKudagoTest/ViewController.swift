@@ -82,9 +82,8 @@ struct Source: Codable {
 class KudaGoAPIManager {
     
     
-    func getEvents(completion: @escaping ([Event]?) -> Void) {
-        let dateNow = Date().timeIntervalSince1970
-        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text&expand=place&actual_since=\(dateNow)"
+    func getEvents(urlString: String, completion: @escaping (GetEventsRawResponse?) -> Void) {
+        
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
@@ -92,8 +91,9 @@ class KudaGoAPIManager {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
-                if let rawResponse = try? JSONDecoder().decode(GetEventsRawResponse.self, from: data) {
-                    completion(rawResponse.results)
+                let decoder = JSONDecoder()
+                if let rawResponse = try? decoder.decode(GetEventsRawResponse.self, from: data) {
+                    completion(rawResponse)
                     return
                 }
             }
@@ -183,6 +183,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let manager = KudaGoAPIManager()
      var events: [Event] = []
+    var pageNext: String?
+    
+    
     
     
     
@@ -207,7 +210,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         
-        cityButton.title = ""
+        cityButton.title = "vjcrdf"
         
        
         
@@ -238,7 +241,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
         
         
-
+        let dateNow = Date().timeIntervalSince1970
+        let urlString = "https://kudago.com/public-api/v1.4/events/?fields=id,dates,title,description,body_text,location,images,price,place,is_free&text_format=text&expand=place&actual_since=\(dateNow)"
         
         
         // Это надо чтобы мы могли показывать наши данные в таблице
@@ -247,13 +251,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Показываем индикатор загрузки
         activityIndicator.startAnimating()
         // Загружаем наши данные
-        manager.getEvents(completion: { events in
+        manager.getEvents(urlString: urlString , completion: { getEventsRawResponseStruct in
             // Ещё не главный поток
             DispatchQueue.main.async { // Теперь главный поток
                 // Присваиваем нашему свойству events ивенты
-                self.events = events ?? [] // Если придет nil, то положим пустой массив []
+                self.events = getEventsRawResponseStruct?.results ?? [] // Если придет nil, то положим пустой массив []
                 // Выключаем индикатор загрузки
                 self.activityIndicator.stopAnimating()
+                self.pageNext = getEventsRawResponseStruct?.next
                 // -------
                 // Тут нужно сделать tableView.reloadData()
                 // Чтобы таблица перезагрузилась и нарисовала те events то что мы загрузили
@@ -358,9 +363,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         return cell ?? UITableViewCell() // И тут тоже
-        
+    
      
         }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastItemIndex = events.count - 3
+        if indexPath.row == lastItemIndex {
+           loadMoreEvents()
+        }
+    }
+    func loadMoreEvents() {
+        manager.getEvents(urlString: pageNext ?? "" ) { (getEventsRawResponseStruct) in
+            DispatchQueue.main.async {
+                self.events.append(contentsOf: getEventsRawResponseStruct?.results ?? [] )
+                
+                self.pageNext = getEventsRawResponseStruct?.next
+                self.tableView.reloadData()
+            }
+        }
+    }
  
     //функиция которая получает событие по индексу
     // очень крутая фунция всем советую 
